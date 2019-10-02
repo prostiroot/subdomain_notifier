@@ -1,0 +1,5 @@
+{
+	"from": "example@test.com",
+	"password": "examplepassword",
+	"to": "myemail@test.com"
+}
