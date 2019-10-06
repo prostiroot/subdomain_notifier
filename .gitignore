@@ -1,2 +1,7 @@
 list_of_domains.txt
 email_config.json
+tools/*
+!tools/add_tools_here.txt
+results/*
+new_subdomains/*
+known_subdomains/*
