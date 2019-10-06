@@ -1,5 +1,8 @@
 import json
 import os
+# check if there are any files in new_subdomains
+# if so, check file contents and send email
+# delete file after sending email
 
 # email config from file
 with open('email_config.json') as email_config:
