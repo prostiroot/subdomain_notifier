@@ -6,7 +6,6 @@ mkdir -p known_subdomains
 mkdir -p new_subdomains
 mkdir -p results
 while IFS= read -r line || [ -n "$line" ]; do
-    # cleari new subdomains ära alati enne algust:
     # run subdomain enumeration tools and save results to a txt file
     echo "searching for subdomains for: ${line}"
     echo "using amass:"
@@ -28,9 +27,17 @@ while IFS= read -r line || [ -n "$line" ]; do
     FILE=known_subdomains/${line}.txt
     if [ -f "$FILE" ]; then
         echo "comparing known_subdomains/${line}.txt to results/result_${line}.txt"
-        grep -Fvxf known_subdomains/${line}.txt results/result_${line}.txt | grep . > new_subdomains/new_${line}.txt
-        # add new subdomains to known_subdomains list
-        cat new_subdomains/new_${line}.txt >> known_subdomains/${line}.txt
+        echo "########## RESULTS for ${line} ##########"
+        if grep -Fvxf known_subdomains/${line}.txt results/result_${line}.txt | grep .
+            then
+                echo "found new subdomain(s)..."
+                echo "saving to /new_subdomains/new_${line}.txt"
+                grep -Fvxf known_subdomains/${line}.txt results/result_${line}.txt | grep . > new_subdomains/new_${line}.txt
+                echo "added new subdomain(s) to known subdomains list"
+                cat new_subdomains/new_${line}.txt >> known_subdomains/${line}.txt
+        else
+            echo "no new subdomains found for ${line}"
+        fi
     else 
         echo "$FILE does not exist, creating ..."
         mv results/result_${line}.txt results/${line}.txt
