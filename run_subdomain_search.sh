@@ -32,7 +32,7 @@ while IFS= read -r line || [ -n "$line" ]; do
             then
                 echo "found new subdomain(s)..."
                 echo "saving to /new_subdomains/new_${line}.txt"
-                grep -Fvxf known_subdomains/${line}.txt results/result_${line}.txt | grep . > new_subdomains/new_${line}.txt
+                grep -Fvxf known_subdomains/${line}.txt results/result_${line}.txt | grep . >> new_subdomains/new_${line}.txt
                 echo "added new subdomain(s) to known subdomains list"
                 cat new_subdomains/new_${line}.txt >> known_subdomains/${line}.txt
         else
