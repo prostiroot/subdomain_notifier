@@ -1,5 +1,6 @@
 # subdomain_notifier
 send an email when new subdomain is registered for a domain in list_of_domains.txt file.
+
 it will:
 1) look into list_of_domains.txt file
 2) run subdomain enumeration tools against a domain in list_of_domains.txt file
