@@ -2,12 +2,15 @@
 script_dir=$(pwd)
 START=$(date +%s)
 filename="list_of_domains.txt"
+mkdir -p known_subdomains
+mkdir -p new_subdomains
+mkdir -p results
 while IFS= read -r line || [ -n "$line" ]; do
     # cleari new subdomains ära alati enne algust:
     # run subdomain enumeration tools and save results to a txt file
     echo "searching for subdomains for: ${line}"
     echo "using amass:"
-    #amass enum -o "results/amass_${line}.txt" -d $line
+    amass enum -o "results/amass_${line}.txt" -d $line
     echo "using sublist3r:"
     cd tools/Sublist3r/
     python3 sublist3r.py -d $line -o "../../results/sublist3r_${line}.txt"
@@ -26,7 +29,7 @@ while IFS= read -r line || [ -n "$line" ]; do
     if [ -f "$FILE" ]; then
         echo "comparing known_subdomains/${line}.txt to results/result_${line}.txt"
         grep -Fvxf known_subdomains/${line}.txt results/result_${line}.txt | grep . > new_subdomains/new_${line}.txt
-        # 
+        # add new subdomains to known_subdomains list
         cat new_subdomains/new_${line}.txt >> known_subdomains/${line}.txt
     else 
         echo "$FILE does not exist, creating ..."
