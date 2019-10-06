@@ -4,7 +4,7 @@ send an email when new subdomain is registered for a domain in list_of_domains.t
 it will:
 1) look into list_of_domains.txt file
 2) run subdomain enumeration tools against a domain in list_of_domains.txt file
-3) merge results to one result file
+3) merge results from different tools to one result file
 4) compare result file to known subdomains list for that domain
 5) send an email if there are new subdomains
 
