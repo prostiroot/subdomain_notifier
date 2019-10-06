@@ -19,4 +19,4 @@ it will:
 6) modify "run_subdomain_search.sh" according to your tools if necessary
 7) set up cron job (crontab -e):
  - example to run job every 3 hours: 
-*/3 * * * cd /path/to/subdomain_notifier && ./run_subdomain_search.sh && python3 notifier.py
+30 */3 * * * cd /path/to/subdomain_notifier && ./run_subdomain_search.sh && python3 notifier.py
