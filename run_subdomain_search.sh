@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH="/snap/bin:/usr/local/bin:/usr/bin:/bin"
 script_dir=$(pwd)
 START=$(date +%s)
 filename="list_of_domains.txt"
